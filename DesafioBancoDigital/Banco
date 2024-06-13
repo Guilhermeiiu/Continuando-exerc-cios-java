@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Banco {
+    private List<Conta> contas;
+    private List<Cliente> clientes;
+
+    public Banco() {
+        contas = new ArrayList<>();
+        clientes = new ArrayList<>();
+    }
+
+    public void adicionarConta(Conta conta) {
+        contas.add(conta);
+        System.out.println("Conta número " + conta.getNumero() + " adicionada.");
+    }
+
+    public void adicionarCliente(Cliente cliente) {
+        clientes.add(cliente);
+        System.out.println("Cliente " + cliente.getNome() + " adicionado.");
+    }
+
+    public Conta obterConta(int numero) {
+        for (Conta conta : contas) {
+            if (conta.getNumero() == numero) {
+                return conta;
+            }
+        }
+        return null;
+    }
+
+    public Cliente obterCliente(String cpf) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+}
