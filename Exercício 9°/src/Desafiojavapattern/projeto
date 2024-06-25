@@ -1,0 +1,81 @@
+
+interface Veiculo {
+    void acelerar();
+    void frear();
+}
+
+
+class Carro implements Veiculo {
+    @Override
+    public void acelerar() {
+        System.out.println("Carro acelerando");
+    }
+
+    @Override
+    public void frear() {
+        System.out.println("Carro freando");
+    }
+}
+
+class Moto implements Veiculo {
+    @Override
+    public void acelerar() {
+        System.out.println("Moto acelerando");
+    }
+
+    @Override
+    public void frear() {
+        System.out.println("Moto freando");
+    }
+}
+
+
+abstract class FabricaVeiculo {
+    public abstract Veiculo criarVeiculo(String tipo);
+
+
+    public Veiculo montarVeiculo(String tipo) {
+        Veiculo veiculo = criarVeiculo(tipo);
+        if (veiculo != null) {
+            System.out.println("Montando veículo do tipo: " + tipo);
+        } else {
+            System.out.println("Tipo de veículo desconhecido.");
+        }
+        return veiculo;
+    }
+}
+
+
+class FabricaVeiculoSimples extends FabricaVeiculo {
+    @Override
+    public Veiculo criarVeiculo(String tipo) {
+        switch (tipo.toLowerCase()) {
+            case "carro":
+                return new Carro();
+            case "moto":
+                return new Moto();
+            default:
+                return null;
+        }
+    }
+}
+
+// Exemplo de uso do Factory Method
+public class Main {
+    public static void main(String[] args) {
+        
+        FabricaVeiculo fabrica = new FabricaVeiculoSimples();
+
+        
+        Veiculo meuCarro = fabrica.montarVeiculo("carro");
+        meuCarro.acelerar();
+        meuCarro.frear();
+
+        System.out.println();
+
+        
+        Veiculo minhaMoto = fabrica.montarVeiculo("moto");
+        minhaMoto.acelerar();
+        minhaMoto.frear();
+    }
+}
