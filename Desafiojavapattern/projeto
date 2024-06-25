@@ -1,10 +1,10 @@
-
+//  Interface Veiculo
 interface Veiculo {
     void acelerar();
     void frear();
 }
 
-
+// Implementações concretas
 class Carro implements Veiculo {
     @Override
     public void acelerar() {
@@ -29,11 +29,11 @@ class Moto implements Veiculo {
     }
 }
 
-
+//Factory Method
 abstract class FabricaVeiculo {
     public abstract Veiculo criarVeiculo(String tipo);
 
-
+    // Método utilitário para utilizar a fábrica
     public Veiculo montarVeiculo(String tipo) {
         Veiculo veiculo = criarVeiculo(tipo);
         if (veiculo != null) {
@@ -66,14 +66,14 @@ public class Main {
         
         FabricaVeiculo fabrica = new FabricaVeiculoSimples();
 
-        
+        // Montando um carro
         Veiculo meuCarro = fabrica.montarVeiculo("carro");
         meuCarro.acelerar();
         meuCarro.frear();
 
         System.out.println();
 
-        
+        // Montando uma moto
         Veiculo minhaMoto = fabrica.montarVeiculo("moto");
         minhaMoto.acelerar();
         minhaMoto.frear();
