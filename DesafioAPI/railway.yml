@@ -1,0 +1,10 @@
+version: 1
+services:
+  backend:
+    image: railwayapp/start-java:17-spring-boot3
+    env:
+      DATABASE_URL: postgres://user:password@hostname:port/database_name
+    buildCommand: ./gradlew bootJar
+    runCommand: java -jar build/libs/*.jar
+    envs:
+      - PORT: 8080
